@@ -26,11 +26,20 @@ QTest.describe "expectations" do
 end
 
 
-class SimpleTest
+class AssertionTest
   #macro methods ruby
-  QTest.describe "Basic test"  do 
+  QTest.describe "AssertionTest"  do 
     it "1 + 1 = 2"  do 
       is_equal 2, 1 + 1
+    end
+    
+  end
+end
+
+class MatchersTest
+  #macro methods ruby
+  QTest.describe "Matchers test"  do 
+    it "Truthy"  do 
     end
     
   end

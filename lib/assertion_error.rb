@@ -1,0 +1,4 @@
+
+class AssertionError < RuntimeError
+
+end
