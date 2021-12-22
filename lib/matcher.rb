@@ -4,7 +4,7 @@ class Matcher
       @expected = expected
     end
 
-    def run (actual, message = @default_msg ) 
+    def run (actual, message = "" ) 
       @actual = actual
       @default_msg = "Expected #{@expected.inspect} but got #{@actual.inspect}"
       @default_msg = message + @default_msg
