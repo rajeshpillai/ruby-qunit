@@ -21,7 +21,7 @@ class AssertionTest < TestCase
   end
   
   # New rspec like syntax
-  QTest.describe "RSpect like expectations" do 
+  QTest.describe "RSpec like expectations" do 
     it "can expect values" do 
       # expect(1 + 1).to(eq(2))
       expect(1 + 1).to eq 2
