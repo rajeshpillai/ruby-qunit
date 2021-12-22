@@ -1,4 +1,4 @@
-class Expectations 
+class Matcher 
   class Equal 
     def initialize(expected) 
       @expected = expected

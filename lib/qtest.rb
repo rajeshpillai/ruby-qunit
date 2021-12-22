@@ -1,6 +1,6 @@
 require_relative "object"
 require_relative "actual"
-require_relative "expectation"
+require_relative "matcher"
 require_relative "assertion_error"
 
 
@@ -48,7 +48,7 @@ class QTest
   
   
   def self.eq(expected) 
-    Expectations::Equal.new(expected)
+    Matcher::Equal.new(expected)
   end
 
 end
