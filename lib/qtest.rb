@@ -1,5 +1,5 @@
 require_relative "object"
-require_relative "actual"
+require_relative "expectation"
 require_relative "matcher"
 require_relative "assertion_error"
 
@@ -43,7 +43,7 @@ class QTest
   
   # New feature
   def self.expect (actual) 
-    Actual.new(actual)
+    Expectation.new(actual)
   end
   
   

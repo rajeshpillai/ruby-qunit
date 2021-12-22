@@ -18,10 +18,14 @@ QTest.describe "some examples" do
 end
 
 # New rspec like syntax
-QTest.describe "expectations" do 
+QTest.describe "RSpect like expectations" do 
   it "can expect values" do 
     # expect(1 + 1).to(eq(2))
     expect(1 + 1).to eq 2
+  end
+
+  it "not equal" do 
+    expect(1 + 1).not_to eq 3
   end
 end
 
