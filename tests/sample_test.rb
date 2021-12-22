@@ -27,6 +27,16 @@ QTest.describe "RSpect like expectations" do
   it "1 + 1 not equal 3" do 
     expect(1 + 2).not_to eq(4)
   end
+
+  it "different string doesn't match" do 
+    expect('ruby').not_to eq('rails')
+  end
+
+  it "same string matches" do 
+    expect('rails').to eq('rails')
+  end
+  
+
 end
 
 
