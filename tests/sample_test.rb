@@ -1,4 +1,5 @@
 require_relative "../lib/qtest"
+require_relative "../lib/test_case"
 
 
 QTest.describe "some examples" do 
@@ -40,7 +41,7 @@ QTest.describe "RSpect like expectations" do
 end
 
 
-class AssertionTest
+class AssertionTest < TestCase
   #macro methods ruby
   QTest.describe "AssertionTest"  do 
     it "1 + 1 = 2"  do 
