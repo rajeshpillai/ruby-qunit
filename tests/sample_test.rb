@@ -24,8 +24,8 @@ QTest.describe "RSpect like expectations" do
     expect(1 + 1).to eq 2
   end
 
-  it "not equal" do 
-    expect(1 + 1).not_to eq 3
+  it "1 + 1 not equal 3" do 
+    expect(1 + 2).not_to eq(4)
   end
 end
 
