@@ -1,7 +1,44 @@
 class QTest 
   def self.describe (desc, &block)
     puts desc.upcase 
-    block.call
+    instance_eval &block
+  end
+
+  def self.it (desc, &block) 
+    begin 
+      $stdout.write "  - #{desc}"
+      result = instance_eval &block  #block.call 
+      puts " #{GREEN}(ok)#{RESET}"
+    rescue Exception => e 
+      puts "#{RED}(fail)#{RESET}"
+      # puts e.backtrace.reverse
+      # format the output
+      puts [
+        "#{RED}Backtract:#{RESET}",
+        e.backtrace.reverse.map {|line| "#{RED}|#{RESET} #{line}"},
+        "#{RED}#{e}#{RESET}"
+      ].flatten.map {|line| "\t#{line}"}.join("\n")
+    end
+  end
+  
+  
+  def self.is_equal(expected, actual)
+    # expected == actual   # true or false
+    unless actual == expected
+      raise AssertionError.new(
+        "Expected #{expected.inspect} but got #{actual.inspect}"
+      )
+    end   
+  end
+  
+  # New feature
+  def self.expect (actual) 
+    Actual.new(actual)
+  end
+  
+  
+  def self.eq(expected) 
+    Expectations::Equal.new(expected)
   end
 end
 
@@ -57,42 +94,7 @@ RESET = "\e[0m"
 
 
 # Approach 4 - Let's put backtrace on its own line
-def it (desc, &block) 
-  begin 
-    $stdout.write "  - #{desc}"
-    result = block.call 
-    puts " #{GREEN}(ok)#{RESET}"
-  rescue Exception => e 
-    puts "#{RED}(fail)#{RESET}"
-    # puts e.backtrace.reverse
-    # format the output
-    puts [
-      "#{RED}Backtract:#{RESET}",
-      e.backtrace.reverse.map {|line| "#{RED}|#{RESET} #{line}"},
-      "#{RED}#{e}#{RESET}"
-    ].flatten.map {|line| "\t#{line}"}.join("\n")
-  end
-end
 
-
-def is_equal(expected, actual)
-  # expected == actual   # true or false
-  unless actual == expected
-    raise AssertionError.new(
-      "Expected #{expected.inspect} but got #{actual.inspect}"
-    )
-  end   
-end
-
-# New feature
-def expect (actual) 
-  Actual.new(actual)
-end
-
-
-def eq(expected) 
-  Expectations::Equal.new(expected)
-end
 
 class Actual 
   def initialize(actual) 
@@ -135,6 +137,14 @@ class ComparisonAssertion
 
   def ==(expected)
     unless @actual == expected
+      raise AssertionError.new(
+        "Expected #{expected.inspect} but got #{@actual.inspect}"
+      )
+    end
+  end
+
+  def !=(expected)
+    unless @actual != expected
       raise AssertionError.new(
         "Expected #{expected.inspect} but got #{@actual.inspect}"
       )

@@ -8,8 +8,13 @@ QTest.describe "some examples" do
   end
 
   it "can fail" do
-    (1 + 1).should == 3
+    # (1 + 1).should == 3
   end
+
+  it "negative testing" do
+    (1 + 1).should != 3
+  end
+  
 end
 
 # New rspec like syntax
@@ -27,9 +32,6 @@ class SimpleTest
     it "1 + 1 = 2"  do 
       is_equal 2, 1 + 1
     end
-
-    it "1 + 2 =  4" do 
-      is_equal 4, 1 + 2
-    end
+    
   end
 end
