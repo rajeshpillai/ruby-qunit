@@ -11,7 +11,7 @@ class AssertionTest < TestCase
     end
   
     it "can fail" do
-      # (1 + 1).should == 3
+      (1 + 1).should == 3
     end
   
     it "negative testing" do
